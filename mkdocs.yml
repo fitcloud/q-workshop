@@ -1,0 +1,63 @@
+site_name: Amazon Q Developer 완전 정복 실습 워크숍
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - markdown.extensions.nl2br
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+theme: 
+  name: material
+  language: ko
+  features:
+    - navigation.indexes
+    - content.code.annotations
+    - content.code.copy
+    - content.code.line_numbers
+    - content.action.edit
+    - content.action.view
+    - navigation.footer
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+nav:
+  - "소개": 00-introduce/index.md
+  - "실습 환경 설정": 
+    - 10-environment/index.md
+    - "AWS 계정 접근(Code-server 접근)": 10-environment/11-account.md
+    - "Q Developer 로그인": 10-environment/12-q_login.md
+  - "Amazon Q Developer 기능 이해 및 실습"  :
+    - 20-q_feature/index.md
+    - "Task 1: Chat": 20-q_feature/21-chat.md
+    - "Task 2: Agent": 20-q_feature/22-agent.md
+    - "Task 3: Rule": 20-q_feature/23-rule.md
+    - "Task 4: MCP": 20-q_feature/24-mcp.md
+  - "Amazon Q를 활용한 실제 Application 구성 실습":
+    - 30-vibe_code/index.md
+    - "Task 1: 계획-구성-검증" : 30-vibe_code/31-implement.md
+    - "Task 2: 애플리케이션 보완" : 30-vibe_code/32-complement.md
+  - "마무리 및 피드백":
+    - 40-final/index.md
+  - "FAQ":
+    - 50-faq/index.md
+
+plugins: []
+extra_css:
+  - stylesheets/extra.css
+

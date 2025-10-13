@@ -1,0 +1,22 @@
+/* Center images and figures in page content */
+.md-typeset img {
+  display: block;
+  margin: 1em auto;
+}
+
+/* Center figure blocks and captions */
+.md-typeset figure {
+  display: table;
+  margin: 1em auto;
+}
+
+.md-typeset figcaption {
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.8em;
+}
+
+
+.md-typeset code {
+    white-space : pre-wrap !important;
+}
