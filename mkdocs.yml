@@ -37,6 +37,7 @@ theme:
       quote: octicons/quote-16
 
 nav:
+  - Home : index.md
   - "소개": 00-introduce/index.md
   - "실습 환경 설정": 
     - 10-environment/index.md
