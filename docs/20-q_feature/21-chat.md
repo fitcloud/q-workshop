@@ -74,8 +74,8 @@ Amazon Q Developer의 Chat은 IDE 안에서 자연어로 질문하고 답변을 
 
   - ✅ Amazon Q 채팅 활성화
   - ✅ Amazon Q 채팅 에이전틱 활성화/비활성화
-  - ✅ ```@``` 를 사용하여 Context 추가 확인
-  - ✅ ```/``` 를 사용하여 Amazon Q 지원 기능 확인
+  - ✅ `@` 를 사용하여 Context 추가 확인
+  - ✅ `/` 를 사용하여 Amazon Q 지원 기능 확인
   - ✅ Amazon Q에 질문하기
   - ✅ Amazon Q에 코드 분석 요청하기
 

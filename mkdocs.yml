@@ -35,13 +35,25 @@ theme:
       bug: octicons/bug-16
       example: octicons/beaker-16
       quote: octicons/quote-16
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 nav:
   - "소개": 00-introduce/index.md
   - "실습 환경 설정": 
     - 10-environment/index.md
-    - "AWS 계정 접근(Code-server 접근)": 10-environment/11-account.md
-    - "Q Developer 로그인": 10-environment/12-q_login.md
+    - "Worshop Studio 로그인": 10-environment/11-workshop_studio.md
+    - "Code Server 환경 접속": 10-environment/12-code_server.md
+    - "Q Developer 로그인": 10-environment/13-q_login.md
   - "Amazon Q Developer 기능 이해 및 실습"  :
     - 20-q_feature/index.md
     - "Task 1: Chat": 20-q_feature/21-chat.md
@@ -54,8 +66,6 @@ nav:
     - "Task 2: 애플리케이션 보완" : 30-vibe_code/32-complement.md
   - "마무리 및 피드백":
     - 40-final/index.md
-  - "FAQ":
-    - 50-faq/index.md
 
 plugins: []
 extra_css:

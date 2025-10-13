@@ -129,11 +129,3 @@ Amazon Q Developer는 주기적으로 업데이트되는 인덱스를 기반으�
     ![complement3](./images/complement3.png)
 
     ![complement4](./images/complement4.png)
-
-
-## 요약
-
-이 워크숍 활동에서 다음 항목을 실습했습니다.
-
-  - ✅ 
-

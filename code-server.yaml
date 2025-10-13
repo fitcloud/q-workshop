@@ -5,6 +5,10 @@ Parameters:
     Type: String
     Description: Default code-server version to use
     Default: "4.104.2"
+  InstanceName:
+    Type: String
+    Description: Name of the VS Code EC2 Instance Name
+    Default: VSCodeServer
   AmiParameterStoreName:
     Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
     Default: "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64"
@@ -75,6 +79,119 @@ Resources:
           IpProtocol: -1
           CidrIp: 0.0.0.0/0
       VpcId: !Ref VPC
+  
+  SecretPlaintextLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - !Sub lambda.${AWS::URLSuffix}
+          Action:
+          - sts:AssumeRole
+      Path: /
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: AwsSecretsManager
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                Resource: !Ref VSCodeSecret
+
+  SecretPlaintextLambda:
+    Type: AWS::Lambda::Function
+    # Metadata:
+    #   cfn_nag:
+    #     rules_to_suppress:
+    #       - id: W58
+    #         reason: Cloud9LambdaExecutionRole has the AWSLambdaBasicExecutionRole managed policy attached, allowing writing to CloudWatch logs
+    #       - id: W89
+    #         reason: Bootstrap function does not need the scaffolding of a VPC or provisioned concurrency
+    #       - id: W92
+    #         reason: Bootstrap function does not need provisioned concurrency
+    Properties:
+      Description: Return the value of the secret
+      Handler: index.lambda_handler
+      Runtime: python3.11
+      MemorySize: 128
+      Timeout: 10
+      Architectures:
+        - arm64
+      Role: !GetAtt SecretPlaintextLambdaRole.Arn
+      Code:
+        ZipFile: |
+          import boto3
+          import json
+          import cfnresponse
+          import logging
+
+          logger = logging.getLogger()
+          logger.setLevel(logging.INFO)
+
+          def is_valid_json(json_string):
+            logger.debug('Calling is_valid_jason: %s', json_string)
+            try:
+              json.loads(json_string)
+              logger.info('Secret is in json format')
+              return True
+            except json.JSONDecodeError:
+              logger.info('Secret is in string format')
+              return False
+          def lambda_handler(event, context):
+            try:
+              if event['RequestType'] == 'Delete':
+                cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData={}, reason='No action to take')
+              else:
+                secret_name = (event['ResourceProperties']['SecretArn'])
+                secrets_mgr = boto3.client('secretsmanager')
+                secret = secrets_mgr.get_secret_value(SecretId = secret_name)
+                logger.info('Getting secret from %s', secret_name)
+                secret_value = secret['SecretString']
+                logger.debug('secret_value: %s', secret_value)
+                responseData = {}
+                if is_valid_json(secret_value):
+                  responseData = secret_value
+                else:
+                  responseData = {'secret': secret_value}
+                logger.debug('responseData: %s', responseData)
+                logger.debug('type(responseData): %s', type(responseData))
+                cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData=json.loads(responseData), reason='OK', noEcho=True)
+            except Exception as e:
+              cfnresponse.send(event, context, cfnresponse.FAILED, responseData={}, reason=str(e))
+
+  ########### Secret Resources ###########
+  VSCodeSecret:
+    # Metadata:
+    #   cfn_nag:
+    #     rules_to_suppress:
+    #       - id: W77
+    #         reason: Secrets Manager Secret should explicitly specify KmsKeyId to allow secret to be shared cross-account - this is not required for this secret as it is generated per-account.
+    Type: AWS::SecretsManager::Secret
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      Name: !Ref InstanceName
+      Description: VSCode user details
+      GenerateSecretString:
+        PasswordLength: 16
+        SecretStringTemplate: !Sub '{"username":"ec2-user"}'
+        GenerateStringKey: 'password'
+        ExcludePunctuation: true
+
+  SecretPlaintext:
+    Type: AWS::CloudFormation::CustomResource
+    Properties:
+      ServiceToken: !GetAtt SecretPlaintextLambda.Arn
+      ServiceTimeout: 20
+      SecretArn: !Ref VSCodeSecret
+
   WorkshopIdeLambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -229,9 +346,10 @@ Resources:
                   cat <<"EOT" | sudo -E -H -u ec2-user bash
                   set -e
 
-                  mkdir -p ~/environment
+                  mkdir -p ~/develop
 
-                  curl -LsSf https://astral.sh/uv/install.sh | sh
+                  curl -Ls -o /tmp/uv_install.sh https://astral.sh/uv/install.sh
+                  sudo sh /tmp/uv_install.sh
 
                   curl -Ls -o /tmp/coder.rpm https://github.com/coder/code-server/releases/download/v${CodeServerVersion}/code-server-${CodeServerVersion}-amd64.rpm
                   sudo rpm -U "/tmp/coder.rpm"
@@ -240,10 +358,11 @@ Resources:
 
                   mkdir -p ~/.config/code-server
                   touch ~/.config/code-server/config.yaml
-                  tee ~/.config/code-server/config.yaml <<EOF
-                  cert: false
-                  auth: none
+                  tee /home/ec2-user/.config/code-server/config.yaml <<EOF
                   bind-addr: 127.0.0.1:8889
+                  auth: password
+                  hashed-password: "$(echo -n ${SecretPlaintext.password} | argon2 $(openssl rand -base64 12) -e)"
+                  cert: false
                   EOF
 
                   mkdir -p ~/.local/share/code-server/User
@@ -259,8 +378,8 @@ Resources:
                   }
                   EOF
 
-                  mkdir -p ~/environment/.vscode
-                  cat << EOF > ~/environment/.vscode/settings.json
+                  mkdir -p ~/develop/.vscode
+                  cat << EOF > ~/develop/.vscode/settings.json
                   {
                     "files.exclude": {
                       "**/.*": true
@@ -268,7 +387,69 @@ Resources:
                   }
                   EOF
 
-                  echo '{ "query": { "folder": "/home/ec2-user/environment" } }' > ~/.local/share/code-server/coder.json
+                  mkdir -p ~/develop/sample
+                  cat << EOF > ~/develop/sample/sample_python_code.py
+                  import boto3
+                  from PIL import Image
+                  import io
+
+                  s3 = boto3.client('s3')
+
+                  def lambda_handler(event, context):
+                      """
+                      Resizes an image uploaded to an S3 bucket and saves the resized version
+                      to another S3 bucket.
+                      """
+                      try:
+                          # Get the source bucket and key from the S3 event
+                          source_bucket_name = event['Records'][0]['s3']['bucket']['name']
+                          object_key = event['Records'][0]['s3']['object']['key']
+
+                          # Define the destination bucket name
+                          destination_bucket_name = '${WorkshopBucket}'
+
+                          # Get the image from the source S3 bucket
+                          response = s3.get_object(Bucket=source_bucket_name, Key=object_key)
+                          original_image_body = response['Body'].read()
+
+                          # Open the image using Pillow
+                          image = Image.open(io.BytesIO(original_image_body))
+
+                          # Define the desired size for the resized image
+                          # You can adjust these values as needed
+                          target_width = 200
+                          target_height = 200
+                          resized_image = image.resize((target_width, target_height))
+
+                          # Save the resized image to a BytesIO object
+                          buffer = io.BytesIO()
+                          resized_image.save(buffer, format=image.format or 'JPEG') # Use original format or default to JPEG
+                          buffer.seek(0)
+
+                          # Upload the resized image to the destination S3 bucket
+                          s3.put_object(
+                              Bucket=destination_bucket_name,
+                              Key=object_key, # You might want to modify the key for resized images
+                              Body=buffer,
+                              ContentType=f'image/{image.format.lower()}' if image.format else 'image/jpeg'
+                          )
+
+                          print(f"Successfully resized {object_key} from {source_bucket_name} to {destination_bucket_name}")
+
+                          return {
+                              'statusCode': 200,
+                              'body': 'Image resized successfully'
+                          }
+
+                      except Exception as e:
+                          print(f"Error processing image: {e}")
+                          return {
+                              'statusCode': 500,
+                              'body': f'Error resizing image: {str(e)}'
+                          }
+                  EOF
+
+                  echo '{ "query": { "folder": "/home/ec2-user/develop" } }' > ~/.local/share/code-server/coder.json
                   echo 'export AWS_REGION=${AWS::Region}' >> ~/.bashrc
                   echo 'export AWS_ACCOUNT_ID=${AWS::AccountId}' >> ~/.bashrc
                   echo 'git config --global credential.helper store' >>~/.bashrc
@@ -314,6 +495,9 @@ Resources:
       SecurityGroupIds:
         - !Ref SecurityGroup
       IamInstanceProfile: !Ref WorkshopIdeInstanceProfile
+      Tags:
+        - Key: Name
+          Value: !Ref InstanceName
 
   # CLOUDFRONT
   WorkshopIdeCachePolicy:
@@ -381,6 +565,124 @@ Resources:
             Id: !Sub CloudFront-${AWS::StackName}
             CustomOriginConfig:
               OriginProtocolPolicy: http-only
+  # Random String for S3 Bucket
+  RandomStringLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  RandomStringLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.lambda_handler
+      Role: !GetAtt RandomStringLambdaRole.Arn
+      Runtime: python3.12
+      Code:
+        ZipFile: |
+          import cfnresponse
+          import random
+          import string
+          def lambda_handler(event, context):
+              response_data = {}
+              status = cfnresponse.SUCCESS
+              physical_resource_id = event.get('PhysicalResourceId')
+              if event['RequestType'] == 'Create':
+                  random_suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+                  response_data['RandomString'] = random_suffix
+                  physical_resource_id = random_suffix
+              elif event['RequestType'] == 'Update':
+                  random_suffix = physical_resource_id
+                  response_data['RandomString'] = random_suffix
+              cfnresponse.send(event, context, status, response_data, physical_resource_id)
+  RandomString:
+    Type: Custom::RandomString
+    Properties:
+      ServiceToken: !GetAtt RandomStringLambdaFunction.Arn
+  # S3
+  S3BucketCleanerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Policies:
+        - PolicyName: S3BucketEmptyPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                  - s3:DeleteObject
+                  - s3:ListBucketVersions
+                  - s3:DeleteObjectVersion
+                Resource:
+                  - !GetAtt WorkshopBucket.Arn
+                  - !Sub "${WorkshopBucket.Arn}/*"
+
+  S3BucketCleanerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.lambda_handler
+      Role: !GetAtt S3BucketCleanerRole.Arn
+      Runtime: python3.12
+      Code:
+        ZipFile: |
+          import boto3
+          import cfnresponse
+          import logging
+          logger = logging.getLogger()
+          logger.setLevel(logging.INFO)
+          def lambda_handler(event, context):
+              try:
+                  if event['RequestType'] == 'Delete':
+                      s3 = boto3.resource('s3')
+                      bucket_name = event['ResourceProperties']['BucketName']
+                      logger.info(f"Emptying bucket: {bucket_name}")
+                      bucket = s3.Bucket(bucket_name)
+                      bucket.object_versions.all().delete()
+                      logger.info(f"All objects deleted from bucket {bucket_name}")
+                  cfnresponse.send(event, context, cfnresponse.SUCCESS, {})
+              except Exception as e:
+                  logger.error(f"Error: {e}")
+                  cfnresponse.send(event, context, cfnresponse.FAILED, {"Error": str(e)})
+
+  WorkshopBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: !Sub "immersion-day-gallery-${RandomString.RandomString}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  S3BucketCleaner:
+    Type: Custom::S3BucketCleaner
+    Properties:
+      ServiceToken: !GetAtt S3BucketCleanerFunction.Arn
+      BucketName: !Ref WorkshopBucket
 Outputs:
-  IdeUrl:
+  URL:
+    Description: VSCode-Server URL
     Value: !Sub https://${WorkshopIdeCloudFrontDistribution.DomainName}
+  Password:
+    Description: VSCode-Server Password
+    Value: !GetAtt SecretPlaintext.password
+  BucketName:
+    Description: S3 Bucket Name
+    Value: !Ref WorkshopBucket
