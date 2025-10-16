@@ -349,7 +349,7 @@ Resources:
                   mkdir -p ~/develop
 
                   curl -Ls -o /tmp/uv_install.sh https://astral.sh/uv/install.sh
-                  sudo sh /tmp/uv_install.sh
+                  sudo -u ec2-user sh /tmp/uv_install.sh
 
                   curl -Ls -o /tmp/coder.rpm https://github.com/coder/code-server/releases/download/v${CodeServerVersion}/code-server-${CodeServerVersion}-amd64.rpm
                   sudo rpm -U "/tmp/coder.rpm"
@@ -639,6 +639,7 @@ Resources:
       Handler: index.lambda_handler
       Role: !GetAtt S3BucketCleanerRole.Arn
       Runtime: python3.12
+      Timeout: 300
       Code:
         ZipFile: |
           import boto3

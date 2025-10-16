@@ -12,14 +12,30 @@ Amazon Q Developer의 Chat은 IDE 안에서 자연어로 질문하고 답변을 
     ![agentic_off](./images/agentic_off.png)
 
 
-## Act 2: Amazon Q 기능 확인하기
+## Act 2: 채팅 활용하기
+  Amazon Q는 AWS 서비스 및 소프트웨어 개발에 대한 질문에 답변할 수 있습니다.
+
+  1. AWS와 관련된 질문하거나, 궁금한 사항을 질문해보세요.
+
+    예시 프롬프트 :
+    ```
+    Python Streamlit으로 개발된 웹 애플리케이션을 AWS로 배포하는 방법을 알려주세요.
+    ```
+    
+  2. Amazon Q가 해당 질문에 대해 어떻게 분석하고 응답하는지       확인합니다.
+
+    ![question1](./images/question1.png)
+    <br>
+
+## Act 3: Context 활용하여 채팅하기
+  Context는 대화나 코드, 문서 등 AI가 참고할 수 있는 추가 정보입니다.
+
+  이를 활용하면 AI가 단순히 입력된 문장만이 아니라, 주어진 상황과 배경(Context)을 함께 고려하여 보다 정확하고 일관된 응답을 생성할 수 있습니다.  
+
   1. 채팅에서 "@Pin Context"버튼을 클릭하거나 "@"를 입력하여 컨텍스트 기능을 표시합니다.
 
     !!! note
         @Pin Context로 Context를 등록하면 매 채팅마다 자동으로 등록된 Context를 참고하여 응답을 생성합니다.
-        
-    
-    해당 기능을 사용하여 AI가 컨텍스트 내용을 참고하여 정확한 응답을 할 수 있도록 합니다.
 
     ![context](./images/context.png)
 
@@ -31,52 +47,27 @@ Amazon Q Developer의 Chat은 IDE 안에서 자연어로 질문하고 답변을 
     - Image: 프롬프트의 컨텍스트로 이미지를 추가할 수 있습니다.
     <br>
   
-  2. 채팅에서 "/"를 입력하여 사용할 수 있는 명령어를 표시합니다.
-    
-    ![command](./images/command.png)
-
-    - ```/transform```: 이 명령을 사용하여 전체 프로젝트의 코드 언어 버전을 업데이트합니다. (해당 명령은 현재 Java만 지원하므로 이 실습에서 사용하지 않습니다.)
-    - ```/help```: 이 명령을 사용하여 Amazon Q가 수행할 수 있는 작업과 수행할 수 없는 작업의 개요, 예시 질문 및 빠른 명령에 대한 개요를 볼 수 있습니다.
-    - ```/clear```: 이 명령을 사용하여 현재 대화를 지웁니다. 채팅 패널에서 이전 대화를 모두 제거하고 Amazon Q가 이전 대화에 대해 가지고 있는 컨텍스트를 지웁니다.
-    - ```/compact```: 컨텍스트 창이 용량 제한에 가까워지면 이 명령을 사용하여 채팅 기록을 압축합니다.
-
-## Act 3: 채팅 활용하기
-  Amazon Q는 AWS 서비스 및 소프트웨어 개발에 대한 질문에 답변할 수 있습니다.
-
-  1. 웹 애플리케이션 배포 방법 질문하기
-
-    아래 내용으로 Amazon Q 채팅에 질문합니다.
-
-    ```
-    Python Streamlit으로 개발된 웹 애플리케이션을 AWS로 배포하는 방법을 알려주세요.
-    ```
-    
-    Amazon Q가 해당 질문에 대해 어떻게 분석하고 응답하는지 확인합니다.
-    ![question1](./images/question1.png)
-    <br>
-  
-  2. 코드 분석 요청하기
-    
-    Context로 ```sample/sample_python_code.py```를 추가하고, 아래 내용으로 Amazon Q 채팅에 질문합니다.
-    ![question2-1](./images/question2-1.png)
-
+  2. `sample/sample_python_code.py`를 Context로 추가하고, Amazon Q에 코드 리뷰를 요청합니다.
+    예시 프롬프트 :
 
     ```
     이 python 코드를 분석하고 발견된 문제점과 고쳐야 할 부분을 설명해주세요.
     ```
+    <br>
 
-    Amazon Q가 해당 질문에 대해 어떻게 분석하고 응답하는지 확인합니다.
+  3. Amazon Q가 해당 질문에 대해 어떻게 분석하고 응답하는지 확인합니다.
+
     ![question2-2](./images/question2-2.png)
+
+
 
 ## 요약
 
   이 워크숍 활동에서 다음 항목을 실습했습니다.
 
   - ✅ Amazon Q 채팅 활성화
-  - ✅ Amazon Q 채팅 에이전틱 활성화/비활성화
-  - ✅ `@` 를 사용하여 Context 추가 확인
-  - ✅ `/` 를 사용하여 Amazon Q 지원 기능 확인
   - ✅ Amazon Q에 질문하기
+  - ✅ `@` 를 사용하여 Context 추가 확인
   - ✅ Amazon Q에 코드 분석 요청하기
 
   다음 활동에서는 Amazon Q의 Agent 기능을 실습해볼 것입니다.

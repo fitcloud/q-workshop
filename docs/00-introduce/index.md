@@ -26,5 +26,6 @@
 2. Q 기능 이해 및 실습
 3. 애플리케이션 구현
 
-## 예상 소요 시간
-- 총 2.5–4시간
+## 실습 결과물
+AWS AI Image Gallery
+![introduce](./images/introduce1.gif)
