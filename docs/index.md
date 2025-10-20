@@ -1,6 +1,6 @@
 # 소개
 ## Amazon Q Developer 완전 정복 실습 워크숍
-이 워크숍에서는 Amazon Q Developer(IDE)를 활용해 AWS AI Image 갤러리 웹 애플리케이션을 기획·구현·(테스트·배포)까지 바이브 코딩 방식으로 완성합니다. AI 에이전트의 핵심 개념(Rule, MCP, Chat, Agent)을 실무 흐름에 적용하는 방법과, Bedrock의 생성형 AI 모델을 애플리케이션에 통합하는 패턴을 학습합니다.
+이 워크숍에서는 Amazon Q Developer(IDE)를 활용해 AWS 서비스에 대한 프로그래밍 지식 없이도, AWS AI Image 갤러리 웹 애플리케이션을 구현하는 것을 목표로 합니다.
 
 ## 학습 목표
 - Amazon Q Developer의 핵심 기능 이해 및 실전 적용
@@ -8,7 +8,6 @@
 ## 전제조건
 필수
   - AWS Builder ID
-  - AWS `us-east-1` 리전에서 Bedrock의 주요 FM 사용 가능
 <br>
 권장
   - AWS 서비스 기초 지식(S3, Bedrock 등)

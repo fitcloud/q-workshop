@@ -35,6 +35,10 @@ theme:
       bug: octicons/bug-16
       example: octicons/beaker-16
       quote: octicons/quote-16
+      prompt: octicons/comment-16
+    details:
+      example: octicons/comment-16
+
   palette: 
     # Palette toggle for light mode
     - scheme: default
