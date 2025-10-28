@@ -1,11 +1,10 @@
 site_name: Amazon Q Developer 완전 정복 실습 워크숍
 
 markdown_extensions:
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.superfences
-  - markdown.extensions.nl2br
-  - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -66,10 +65,8 @@ nav:
     - "Task 4: MCP": 20-q_feature/24-mcp.md
   - "Amazon Q를 활용한 실제 Application 구성 실습":
     - 30-vibe_code/index.md
-    - "Task 1: 계획-구성-검증" : 30-vibe_code/31-implement.md
+    - "Task 1: 애플리케이션 구현" : 30-vibe_code/31-implement.md
     - "Task 2: 애플리케이션 보완" : 30-vibe_code/32-complement.md
-  - "마무리 및 피드백":
-    - 40-final/index.md
 
 plugins: []
 extra_css:
