@@ -8,11 +8,11 @@
 ## 전제조건
 필수
   - AWS Builder ID
-<br>
+
 권장
   - AWS 서비스 기초 지식(S3, Bedrock 등)
   - Python/Streamlit 사용 경험
-  - VS Code 사용 경험
+  - IDE 사용 경험
 
 ## 사용 기술
 - Amazon Q Developer(IDE)
@@ -21,9 +21,10 @@
 - Python, Streamlit
 
 ## 진행 흐름
-1. 환경설정
-2. Q 기능 이해 및 실습
-3. 애플리케이션 구현
+
+  1. 환경설정
+  2. Q 기능 이해 및 실습
+  3. 애플리케이션 구현
 
 ## 실습 결과물
 AWS AI Image Gallery

@@ -1,5 +1,7 @@
 # Task 4: MCP
 
+---
+
 Amazon Q Developer의 **MCP (Model Context Protocol)** 기능은 AI 어시스턴트가 외부 도구와 데이터 소스에 접근할 수 있도록 하는 표준화된 프로토콜입니다. MCP를 사용하면 Amazon Q가 최신 AWS 문서, 코드 샘플, 사내 지식베이스 등 실시간 정보에 접근하여 더 정확한 답변을 제공할 수 있습니다.
 
 이전 실습에서 배운 **Rules**가 AI의 동작을 제어했다면, **MCP**는 AI의 능력을 확장합니다.

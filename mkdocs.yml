@@ -67,6 +67,10 @@ nav:
     - 30-vibe_code/index.md
     - "Task 1: 애플리케이션 구현" : 30-vibe_code/31-implement.md
     - "Task 2: 애플리케이션 보완" : 30-vibe_code/32-complement.md
+  - "리소스 정리":
+    - 40-resource/index.md
+  - "마무리":
+    - 50-finish/index.md
 
 plugins: []
 extra_css:
