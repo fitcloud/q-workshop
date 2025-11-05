@@ -39,7 +39,7 @@ Amazon Q Developer의 **Chat** 기능은 IDE 안에서 자연어로 질문하고
 
 ---
 
-## Act 2: Chat 사용용
+## Act 2: Chat 모드 사용
 
 ### 2-1. 질문하기
 
