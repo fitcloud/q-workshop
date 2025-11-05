@@ -3,7 +3,7 @@
 이 Workshop 에서는 Code Server를 통해 Amazon EC2 인스턴스에서 실행되는 Visual Studio Code를 사용합니다. 
 이를 통해 모든 도구가 사전 구성된 일관된 개발 환경을 제공합니다.
 
-1. 해당 <a href="https://ap-northeast-2.console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/quickcreate?templateURL=https%3A%2F%2Fq-developer-immersion-day-joung.s3.ap-northeast-2.amazonaws.com%2Fcode-server.yaml&stackName=q-workshop" target="_blank">스택 생성</a> 링크를 클릭해서 실습 환경을 구성하는 CloudFormation 스택을 생성합니다.
+1. 해당 <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https%3A%2F%2Fq-developer-immersion-day-joung.s3.ap-northeast-2.amazonaws.com%2Fcode-server.yaml&stackName=q-workshop" target="_blank">스택 생성</a> 링크를 클릭해서 실습 환경을 구성하는 CloudFormation 스택을 생성합니다.
     하단에 "AWS CloudFormation에서 IAM 리소스를 생성할 수 있음을 승인합니다." 체크박스를 선택하고 "스택 생성"을 선택하여 스택을 생성합니다.
 
     !!! info

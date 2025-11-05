@@ -7,9 +7,11 @@
 
 ## 전제조건
 필수
+
   - AWS Builder ID
 
 권장
+
   - AWS 서비스 기초 지식(S3, Bedrock 등)
   - Python/Streamlit 사용 경험
   - IDE 사용 경험

@@ -379,13 +379,6 @@ Resources:
                   EOF
 
                   mkdir -p ~/develop/.vscode
-                  cat << EOF > ~/develop/.vscode/settings.json
-                  {
-                    "files.exclude": {
-                      "**/.*": true
-                    }
-                  }
-                  EOF
 
                   mkdir -p ~/develop/sample
                   cat << EOF > ~/develop/sample/sample_python_code.py
