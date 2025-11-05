@@ -1,0 +1,1783 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../23-rule/">
+      
+      
+        <link rel="next" href="../../30-vibe_code/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Task 4: MCP - Amazon Q Developer 완전 정복 실습 워크숍</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');--md-admonition-icon--prompt:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%202.75C1%201.784%201.784%201%202.75%201h10.5c.966%200%201.75.784%201.75%201.75v7.5A1.75%201.75%200%200%201%2013.25%2012H9.06l-2.573%202.573A1.458%201.458%200%200%201%204%2013.543V12H2.75A1.75%201.75%200%200%201%201%2010.25Zm1.75-.25a.25.25%200%200%200-.25.25v7.5c0%20.138.112.25.25.25h2a.75.75%200%200%201%20.75.75v2.19l2.72-2.72a.75.75%200%200%201%20.53-.22h4.5a.25.25%200%200%200%20.25-.25v-7.5a.25.25%200%200%200-.25-.25Z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#task-4-mcp" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Amazon Q Developer 완전 정복 실습 워크숍" class="md-header__button md-logo" aria-label="Amazon Q Developer 완전 정복 실습 워크숍" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amazon Q Developer 완전 정복 실습 워크숍
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Task 4: MCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Amazon Q Developer 완전 정복 실습 워크숍" class="md-nav__button md-logo" aria-label="Amazon Q Developer 완전 정복 실습 워크숍" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amazon Q Developer 완전 정복 실습 워크숍
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-introduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    소개
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-environment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    실습 환경 설정
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            실습 환경 설정
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-environment/11-workshop_studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Worshop Studio 로그인
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-environment/12-code_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Server 환경 접속
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-environment/13-q_login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Q Developer 로그인
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Amazon Q Developer 기능 이해 및 실습
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Amazon Q Developer 기능 이해 및 실습
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 1: Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 2: Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-rule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 3: Rule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Task 4: MCP
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 4: MCP
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 MCP 작동 원리
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-1-aws-knowledge-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 1: AWS Knowledge MCP 서버 설정하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 1: AWS Knowledge MCP 서버 설정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-mcp-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-1. MCP 서버 설정 UI 열기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-aws-knowledge-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-2. AWS Knowledge MCP 서버 추가하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-3. 사용 가능한 도구 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-2-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 2: MCP 도구 수동 호출하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 2: MCP 도구 수동 호출하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-1. 새 채팅 세션 시작하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-2. MCP 도구 호출 테스트하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-3. 도구 실행 승인하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-4. 응답 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-3-rules-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 3: Rules와 MCP를 결합한 자동화
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 3: Rules와 MCP를 결합한 자동화">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-mcp-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-1. MCP 자동 사용을 위한 Rule 생성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-2. Rule 내용 작성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-3. 자동화 테스트하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧹 리소스 정리
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 MCP 활용 고급 팁
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ 주의사항
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ 주의사항">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      토큰 사용량
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      보안
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 요약
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 다음 단계
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-vibe_code/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Amazon Q를 활용한 실제 Application 구성 실습
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Amazon Q를 활용한 실제 Application 구성 실습
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-vibe_code/31-implement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 1: 애플리케이션 구현
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-vibe_code/32-complement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 2: 애플리케이션 보완
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-resource/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    리소스 정리
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            리소스 정리
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-finish/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    마무리
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            마무리
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 MCP 작동 원리
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-1-aws-knowledge-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 1: AWS Knowledge MCP 서버 설정하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 1: AWS Knowledge MCP 서버 설정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-mcp-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-1. MCP 서버 설정 UI 열기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-aws-knowledge-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-2. AWS Knowledge MCP 서버 추가하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-3. 사용 가능한 도구 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-2-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 2: MCP 도구 수동 호출하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 2: MCP 도구 수동 호출하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-1. 새 채팅 세션 시작하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-2. MCP 도구 호출 테스트하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-3. 도구 실행 승인하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-4. 응답 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-3-rules-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 3: Rules와 MCP를 결합한 자동화
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 3: Rules와 MCP를 결합한 자동화">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-mcp-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-1. MCP 자동 사용을 위한 Rule 생성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-2. Rule 내용 작성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-3. 자동화 테스트하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧹 리소스 정리
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 MCP 활용 고급 팁
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ 주의사항
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ 주의사항">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      토큰 사용량
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      보안
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 요약
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 다음 단계
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="task-4-mcp">Task 4: MCP</h1>
+<hr />
+<p>Amazon Q Developer의 <strong>MCP (Model Context Protocol)</strong> 기능은 AI 어시스턴트가 외부 도구와 데이터 소스에 접근할 수 있도록 하는 표준화된 프로토콜입니다. MCP를 사용하면 Amazon Q가 최신 AWS 문서, 코드 샘플, 사내 지식베이스 등 실시간 정보에 접근하여 더 정확한 답변을 제공할 수 있습니다.</p>
+<p>이전 실습에서 배운 <strong>Rules</strong>가 AI의 동작을 제어했다면, <strong>MCP</strong>는 AI의 능력을 확장합니다.</p>
+<p>이 실습에서는 AWS Knowledge MCP 서버를 설정하고, Rules와 결합하여 자동화된 워크플로우를 구축합니다.</p>
+<hr />
+<h2 id="_1">🎯 학습 목표</h2>
+<ul>
+<li>AWS Knowledge MCP 서버를 Amazon Q Developer에 설정하기</li>
+<li>MCP 도구를 수동으로 호출하고 실행 결과 확인하기</li>
+<li>Rules와 MCP를 결합하여 자동화된 워크플로우 구축하기</li>
+</ul>
+<hr />
+<h2 id="mcp">💡 MCP 작동 원리</h2>
+<p>MCP는 <strong>사용자 - MCP 클라이언트 - MCP 서버 - 데이터 소스 - LLM</strong>으로 이어지는 흐름으로 작동합니다.</p>
+<ul>
+<li>
+<p>MCP 통신 흐름 (10단계)
+    <img alt="MCP Architecture" src="../images/mcp-response-diagram.png" /></p>
+<p>위 다이어그램은 사용자 질문이 MCP를 통해 처리되는 전체 과정을 보여줍니다:</p>
+<p><strong>1. Query (사용자 질문)</strong></p>
+<ul>
+<li>사용자가 Amazon Q에 자연어로 질문을 입력합니다.</li>
+<li>예: "AWS Bedrock의 이미지 생성 모델은 무엇인가요?"</li>
+</ul>
+<p><strong>2. Prompt (LLM에 전달)</strong></p>
+<ul>
+<li>MCP 클라이언트(Amazon Q CLI)가 사용자 질문을 LLM으로 전달합니다.</li>
+<li>이때 Context, Rules, 대화 기록도 함께 포함됩니다.</li>
+</ul>
+<p><strong>3. Use tool to get additional context (도구 사용 결정)</strong></p>
+<ul>
+<li>LLM이 질문을 분석하고, 외부 정보가 필요하다고 판단합니다.</li>
+<li>"최신 AWS Bedrock 문서를 확인해야겠다"고 결정합니다.</li>
+</ul>
+<p><strong>4. Call (MCP 도구 호출)</strong></p>
+<ul>
+<li>MCP 클라이언트가 MCP 서버에 특정 도구 실행을 요청합니다.</li>
+<li>예: <code>aws_docs_search</code> 도구를 <code>query="Bedrock image generation models"</code> 파라미터로 호출</li>
+</ul>
+<p><strong>5. Query (데이터 소스 조회)</strong></p>
+<ul>
+<li>MCP 서버 내의 도구가 실제 데이터 소스(AWS 문서 데이터베이스)에 쿼리를 전송합니다.</li>
+</ul>
+<p><strong>6. Response (데이터 소스 응답)</strong></p>
+<ul>
+<li>데이터 소스가 관련 문서와 코드 샘플을 MCP 도구에 반환합니다.</li>
+</ul>
+<p><strong>7. Result (도구 실행 결과)</strong></p>
+<ul>
+<li>MCP 도구가 검색 결과를 정리하여 MCP 클라이언트에 반환합니다.</li>
+</ul>
+<p><strong>8. Tool result (결과 LLM 전달)</strong></p>
+<ul>
+<li>MCP 클라이언트가 도구 실행 결과를 LLM에게 전달합니다.</li>
+<li>LLM은 이제 최신 정보를 컨텍스트로 활용할 수 있습니다.</li>
+</ul>
+<p><strong>(Repeat as required):</strong></p>
+<ul>
+<li>LLM이 추가 정보가 필요하다고 판단하면 3~8단계를 반복합니다.</li>
+<li>예: 코드 샘플이 필요하면 <code>get_code_sample</code> 도구를 추가로 호출합니다.</li>
+</ul>
+<p><strong>9. Final response (최종 답변 생성)</strong></p>
+<ul>
+<li>LLM이 원래 질문 + 도구 결과를 종합하여 최종 답변을 생성합니다.</li>
+<li>"2025년 기준 AWS Bedrock에서는 Stable Diffusion 3.0 모델을 사용할 수 있습니다..."</li>
+</ul>
+<p><strong>10. Response (사용자에게 응답)</strong></p>
+<ul>
+<li>MCP 클라이언트가 최종 답변을 사용자에게 표시합니다.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="act-1-aws-knowledge-mcp">Act 1: AWS Knowledge MCP 서버 설정하기</h2>
+<p><strong>AWS Knowledge MCP Server</strong>는 최신 AWS 문서와 코드 샘플을 제공하는 원격 MCP 서버입니다.</p>
+<h3 id="1-1-mcp-ui">1-1. MCP 서버 설정 UI 열기</h3>
+<ol>
+<li>
+<p>Amazon Q Developer 패널 상단의 <strong>"Configure MCP servers"</strong> 버튼을 클릭합니다.</p>
+<p><img alt="mcp_set1" src="../images/mcp_set1.png" /></p>
+</li>
+<li>
+<p>MCP 서버 목록 화면에서 <strong>"+"</strong> 버튼을 클릭합니다.</p>
+<p><img alt="mcp_set2" src="../images/mcp_set2.png" /></p>
+</li>
+</ol>
+<h3 id="1-2-aws-knowledge-mcp">1-2. AWS Knowledge MCP 서버 추가하기</h3>
+<ol>
+<li>
+<p>다음 정보를 입력하여 MCP 서버를 설정합니다:</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scope</strong></td>
+<td><code>Global</code></td>
+</tr>
+<tr>
+<td><strong>Name</strong></td>
+<td><code>AWS Knowledge MCP Server</code></td>
+</tr>
+<tr>
+<td><strong>Transport</strong></td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td><strong>URL</strong></td>
+<td><code>https://knowledge-mcp.global.api.aws</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="mcp_set3" src="../images/mcp_set3.png" /></p>
+</li>
+<li>
+<p><strong>"Save"</strong> 버튼을 클릭하여 설정을 저장합니다.</p>
+<div class="admonition tip">
+<p class="admonition-title">Scope: Global vs Local</p>
+<ul>
+<li><strong>Global</strong>: 모든 프로젝트에서 사용 가능</li>
+<li><strong>Local</strong>: 현재 프로젝트에만 적용</li>
+</ul>
+</div>
+</li>
+</ol>
+<h3 id="1-3">1-3. 사용 가능한 도구 확인하기</h3>
+<ul>
+<li>
+<p>설정이 완료되면 MCP 서버가 제공하는 <strong>Tools (도구)</strong> 목록이 자동으로 표시됩니다.</p>
+<p><img alt="mcp_set4" src="../images/mcp_set4.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">MCP 서버 설정 완료!</p>
+<p>이제 Amazon Q Developer가 AWS Knowledge MCP Server를 통해 실시간으로 최신 AWS 정보에 접근할 수 있습니다!</p>
+</div>
+</li>
+</ul>
+<hr />
+<h2 id="act-2-mcp">Act 2: MCP 도구 수동 호출하기</h2>
+<p>설정한 MCP 서버의 도구를 실제로 사용해보겠습니다.</p>
+<h3 id="2-1">2-1. 새 채팅 세션 시작하기</h3>
+<ol>
+<li>
+<p>채팅 입력창에 <code>/clear</code>를 입력하거나, 상단 탭에서 <strong>"+"</strong> 버튼을 클릭하여 새 채팅을 시작합니다.</p>
+<p><img alt="clear" src="../images/clear.png" /></p>
+</li>
+</ol>
+<h3 id="2-2-mcp">2-2. MCP 도구 호출 테스트하기</h3>
+<ul>
+<li>
+<p>다음 프롬프트를 입력하여 Amazon Q가 MCP 서버를 호출하는지 확인합니다:</p>
+<div class="admonition quote">
+<p class="admonition-title">프롬프트</p>
+<div class="highlight"><pre><span></span><code>AI로 이미지를 생성하고자 합니다. AWS의 Bedrock FM 모델 중 어떤 모델을 사용하여 이미지를 생성할 수 있는지 최신 문서를 참고해서 답변하세요.
+</code></pre></div>
+<p><img alt="mcp_set5" src="../images/mcp_set5.png" /></p>
+</div>
+</li>
+</ul>
+<h3 id="2-3">2-3. 도구 실행 승인하기</h3>
+<ul>
+<li>
+<p>채팅 중 Amazon Q가 MCP 도구 사용을 요청하면 <strong>"Run"</strong> 버튼이 표시됩니다.<br />
+<strong>"Run"</strong> 버튼을 클릭하여 도구 실행을 승인합니다.
+      <img alt="mcp_set6" src="../images/mcp_set6.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">도구 실행 권한</p>
+<p>MCP 도구는 기본적으로 <strong>"Ask"</strong> 권한으로 설정되어 사용 전 확인을 요청합니다.</p>
+<p>자동 실행을 원한다면 MCP 설정에서 권한을 <strong>"Always Allow"</strong>로 변경하세요.</p>
+</div>
+</li>
+</ul>
+<h3 id="2-4">2-4. 응답 확인하기</h3>
+<ul>
+<li>
+<p>Amazon Q가 MCP 도구를 통해 최신 AWS 문서를 검색하고, 그 결과를 바탕으로 답변합니다.</p>
+<p><img alt="mcp_set7" src="../images/mcp_set7.png" /></p>
+</li>
+<li>
+<p><strong>확인할 사항:</strong></p>
+<ul>
+<li>✅ 최신 정보(2025년 기준)가 포함되어 있는지</li>
+<li>✅ 구체적인 모델 이름이 제공되는지</li>
+<li>✅ 응답 하단에 참조 출처가 표시되는지</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">MCP 도구 작동 확인 완료!</p>
+<p>Amazon Q가 실시간 외부 데이터를 활용하여 답변한 것을 확인했습니다!</p>
+</div>
+</li>
+</ul>
+<hr />
+<h2 id="act-3-rules-mcp">Act 3: Rules와 MCP를 결합한 자동화</h2>
+<p>현재는 "최신 문서를 참고해서"라고 명시해야 MCP 도구가 호출됩니다. 이 과정을 자동화하기 위해 <strong>Rules</strong>를 추가하겠습니다.</p>
+<h3 id="3-1-mcp-rule">3-1. MCP 자동 사용을 위한 Rule 생성하기</h3>
+<ol>
+<li>
+<p>채팅 입력창 우측의 <strong>"Rules"</strong> 버튼을 클릭합니다.</p>
+<p><img alt="create_rule1" src="../images/create_rule1.png" /></p>
+</li>
+<li>
+<p>드롭다운 메뉴에서 <strong>"Create a new rule"</strong>을 선택합니다.</p>
+</li>
+<li>
+<p>Rule name 입력창에 <code>mcp_rule</code>을 입력하고 <strong>"Create"</strong> 버튼을 클릭합니다.</p>
+<p><img alt="mcp_set8" src="../images/mcp_set8.png" /></p>
+</li>
+</ol>
+<h3 id="3-2-rule">3-2. Rule 내용 작성하기</h3>
+<ul>
+<li>
+<p>IDE에서 자동으로 열린 <code>.amazonq/rules/mcp_rule.md</code> 파일에 다음 규칙을 작성합니다:</p>
+<div class="admonition example">
+<p class="admonition-title"><code>mcp_rule.md</code></p>
+<div class="highlight"><pre><span></span><code>모든 AWS 관련 질의나 요청을 처리할 때에는, 항상 최신 공식 문서를 기준으로 응답과 결과를 생성해야 합니다.
+
+이를 위해 AWS Knowledge MCP Server에서 제공하는 도구를 사용하여 정보를 조회하고, 그 결과를 기반으로 답변을 구성하십시오.
+</code></pre></div>
+</div>
+</li>
+</ul>
+<h3 id="3-3">3-3. 자동화 테스트하기</h3>
+<p>Rule이 제대로 작동하는지 테스트합니다.</p>
+<ol>
+<li>
+<p><strong>새 채팅 시작</strong>:</p>
+<ul>
+<li><code>/clear</code>를 입력하거나 새 탭을 엽니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>Active File Context 제거</strong>:</p>
+<ul>
+<li>입력창 위에 "Active file" Context가 있다면 ❌ 버튼을 클릭하여 제거합니다.</li>
+</ul>
+<p><img alt="mcp_set9" src="../images/mcp_set9.png" /></p>
+</li>
+<li>
+<p><strong>테스트 프롬프트 입력</strong>:</p>
+<details class="quote">
+<summary>예시 프롬프트</summary>
+<div class="highlight"><pre><span></span><code>AWS S3 버킷 조회 및 객체 업로드 예시 Python 코드를 작성하지 않고(파일 생성 없이) 답변과 함께 설명하세요.
+</code></pre></div>
+</details>
+</li>
+<li>
+<p><strong>자동 실행 확인</strong>:</p>
+<p>Amazon Q가 자동으로 <strong><code>mcp_rule.md</code> Context</strong>를 추가하고, MCP 도구를 호출하는지 확인합니다.</p>
+<p><img alt="mcp_set10" src="../images/mcp_set10.png" /></p>
+</li>
+</ol>
+<hr />
+<h2 id="_2">🧹 리소스 정리</h2>
+<p>실습을 마친 후, Amazon Q가 생성한 파일이 있다면 삭제합니다.</p>
+<div class="admonition note">
+<p class="admonition-title">리소스 정리의 이유</p>
+<p>다음 실습에서 불필요한 컨텍스트가 포함되지 않도록 하기 위함입니다.</p>
+</div>
+<hr />
+<h2 id="mcp_1">💡 MCP 활용 고급 팁</h2>
+<ol>
+<li>
+<p>다양한 AWS MCP 서버 활용하기</p>
+<p>AWS는 여러 전문화된 MCP 서버를 제공합니다:</p>
+<p><strong>AWS 공식 MCP 서버 디렉토리:</strong>
+<a href="https://awslabs.github.io/mcp/">https://awslabs.github.io/mcp/</a></p>
+<p><strong>주요 AWS MCP 서버:</strong></p>
+<ul>
+<li><strong>AWS Knowledge MCP Server</strong>: 문서 및 코드 샘플</li>
+<li><strong>AWS Diagram MCP Server</strong>: AWS 아키텍처 다이어그램 생성</li>
+<li><strong>AWS Documentation MCP Server</strong>: 심화 문서 검색</li>
+<li><strong>AWS RDS Operator MCP Server</strong>: RDS 인스턴스 관리</li>
+</ul>
+</li>
+<li>
+<p>커뮤니티 MCP 서버 탐색하기</p>
+<p>AWS 외에도 다양한 커뮤니티 MCP 서버를 사용할 수 있습니다:</p>
+<p><strong>Smithery - MCP 서버 마켓플레이스:</strong> <a href="https://smithery.ai/">https://smithery.ai/</a></p>
+<p><strong>인기 커뮤니티 MCP 서버:</strong></p>
+<ul>
+<li><strong>GitHub MCP Server</strong>: 리포지토리 관리 및 이슈 추적</li>
+<li><strong>Slack MCP Server</strong>: 메시지 전송 및 채널 관리</li>
+<li><strong>PostgreSQL MCP Server</strong>: 데이터베이스 쿼리 실행</li>
+<li><strong>Google Drive MCP Server</strong>: 문서 검색 및 다운로드</li>
+<li><strong>Linear MCP Server</strong>: 프로젝트 관리 및 이슈 트래킹</li>
+</ul>
+</li>
+<li>
+<p>로컬 MCP 서버 구축하기</p>
+<p>사내 시스템이나 프라이빗 데이터 소스를 위한 자체 MCP 서버를 구축할 수 있습니다.</p>
+<p><strong>MCP 서버 구축 언어:</strong></p>
+<ul>
+<li>Python</li>
+<li>TypeScript/Node.js</li>
+<li>Rust</li>
+<li>Go</li>
+</ul>
+<p><strong>참고 자료:</strong></p>
+<ul>
+<li><a href="https://github.com/modelcontextprotocol">MCP GitHub Repository</a></li>
+<li><a href="https://modelcontextprotocol.io">MCP 사양 문서</a></li>
+</ul>
+</li>
+<li>
+<p>MCP 도구 권한 세밀하게 관리하기</p>
+<p>프로덕션 환경에서는 도구별로 권한을 세밀하게 설정해야 합니다:</p>
+<p><strong>권한 수준:</strong></p>
+<ul>
+<li><strong>Ask</strong>: 매번 사용자 승인 필요 (민감한 작업)</li>
+<li><strong>Allow</strong>: 자동 실행 (읽기 전용, 안전한 작업)</li>
+<li><strong>Deny</strong>: 완전히 차단 (위험한 작업)</li>
+</ul>
+</li>
+<li>
+<p>MCP와 Rules의 시너지 극대화하기</p>
+<p>Rules와 MCP를 전략적으로 결합하면 강력한 자동화를 구축할 수 있습니다:</p>
+<p><strong>시나리오 1: 보안 정책 자동 적용</strong>
+<div class="highlight"><pre><span></span><code><span class="gh"># Rule</span>
+모든 AWS IAM 정책 생성 시:
+<span class="k">1.</span> AWS Security Best Practices MCP Server로 보안 검증
+<span class="k">2.</span> 최소 권한 원칙 준수 확인
+<span class="k">3.</span> 위험한 권한(*)이 포함되면 경고
+</code></pre></div></p>
+<p><strong>시나리오 2: 코드 리뷰 자동화</strong>
+<div class="highlight"><pre><span></span><code><span class="gh"># Rule</span>
+Pull Request 코드 리뷰 시:
+<span class="k">1.</span> GitHub MCP Server로 최근 이슈 확인
+<span class="k">2.</span> 관련 이슈가 있으면 자동으로 링크 추가
+<span class="k">3.</span> Slack MCP Server로 리뷰 요청 알림 전송
+</code></pre></div></p>
+</li>
+</ol>
+<hr />
+<h2 id="_3">⚠️ 주의사항</h2>
+<h3 id="_4">토큰 사용량</h3>
+<p>MCP 도구가 검색한 결과는 토큰을 소비합니다. 구체적이고 좁은 범위의 검색을 수행하세요.</p>
+<h3 id="_5">보안</h3>
+<ul>
+<li>도구별 권한을 최소한으로 설정</li>
+<li>민감한 데이터 접근 도구는 "Ask" 권한 유지</li>
+</ul>
+<hr />
+<h2 id="_6">✅ 요약</h2>
+<p>이 워크숍 활동에서 다음 항목을 실습했습니다:</p>
+<ul>
+<li>✅ MCP 작동 원리를 10단계 통신 흐름으로 이해</li>
+<li>✅ AWS Knowledge MCP 서버를 설정하고 도구 확인</li>
+<li>✅ MCP 도구를 수동으로 호출하고 최신 문서 기반 답변 받기</li>
+<li>✅ Rules와 MCP를 결합하여 자동화된 워크플로우 구축</li>
+</ul>
+<hr />
+<h2 id="_7">🚀 다음 단계</h2>
+<p>다음 실습에서는 지금까지 배운 <strong>Chat, Agent, Rules, MCP</strong>의 모든 기능을 결합하여:</p>
+<ul>
+<li><strong>실제 AI Image Gallery 애플리케이션</strong> 구축</li>
+<li>AWS Bedrock을 활용한 이미지 생성 기능 구현</li>
+<li>Streamlit 웹 프레임워크로 UI 개발</li>
+</ul>
+<p><strong>이제 실전 애플리케이션 구축으로 모든 지식을 통합해봅시다!</strong> 🎉</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../23-rule/" class="md-footer__link md-footer__link--prev" aria-label="이전: Task 3: Rule">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                Task 3: Rule
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../30-vibe_code/" class="md-footer__link md-footer__link--next" aria-label="다음: Amazon Q를 활용한 실제 Application 구성 실습">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                Amazon Q를 활용한 실제 Application 구성 실습
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "content.code.annotations", "content.code.copy", "content.code.line_numbers", "content.action.edit", "content.action.view", "navigation.footer"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

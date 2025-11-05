@@ -1,0 +1,1648 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../22-agent/">
+      
+      
+        <link rel="next" href="../24-mcp/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Task 3: Rule - Amazon Q Developer 완전 정복 실습 워크숍</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');--md-admonition-icon--prompt:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%202.75C1%201.784%201.784%201%202.75%201h10.5c.966%200%201.75.784%201.75%201.75v7.5A1.75%201.75%200%200%201%2013.25%2012H9.06l-2.573%202.573A1.458%201.458%200%200%201%204%2013.543V12H2.75A1.75%201.75%200%200%201%201%2010.25Zm1.75-.25a.25.25%200%200%200-.25.25v7.5c0%20.138.112.25.25.25h2a.75.75%200%200%201%20.75.75v2.19l2.72-2.72a.75.75%200%200%201%20.53-.22h4.5a.25.25%200%200%200%20.25-.25v-7.5a.25.25%200%200%200-.25-.25Z%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#task-3-rule" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Amazon Q Developer 완전 정복 실습 워크숍" class="md-header__button md-logo" aria-label="Amazon Q Developer 완전 정복 실습 워크숍" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amazon Q Developer 완전 정복 실습 워크숍
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Task 3: Rule
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Amazon Q Developer 완전 정복 실습 워크숍" class="md-nav__button md-logo" aria-label="Amazon Q Developer 완전 정복 실습 워크숍" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amazon Q Developer 완전 정복 실습 워크숍
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-introduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    소개
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-environment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    실습 환경 설정
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            실습 환경 설정
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-environment/11-workshop_studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Worshop Studio 로그인
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-environment/12-code_server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Server 환경 접속
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-environment/13-q_login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Q Developer 로그인
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Amazon Q Developer 기능 이해 및 실습
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Amazon Q Developer 기능 이해 및 실습
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 1: Chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 2: Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Task 3: Rule
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 3: Rule
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Rules란 무엇인가?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 Rules란 무엇인가?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rules vs 일반 프롬프트
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-1-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 1: Rules의 이점 이해하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 1: Rules의 이점 이해하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-rules-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-1. Rules를 적용하면 얻는 5가지 이점
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-2. 효과적인 Rules 작성 가이드
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-2-ai-image-gallery-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 2: AI Image Gallery 프로젝트에 Rules 적용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 2: AI Image Gallery 프로젝트에 Rules 적용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-1. 새 Rule 생성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-2. Rule 내용 작성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-3. Rule 적용 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rules_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Rules 활용 팁
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rules_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Rules 사용 시 주의사항
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 요약
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 다음 단계
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 4: MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-vibe_code/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Amazon Q를 활용한 실제 Application 구성 실습
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Amazon Q를 활용한 실제 Application 구성 실습
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-vibe_code/31-implement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 1: 애플리케이션 구현
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-vibe_code/32-complement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task 2: 애플리케이션 보완
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-resource/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    리소스 정리
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            리소스 정리
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-finish/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    마무리
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            마무리
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Rules란 무엇인가?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 Rules란 무엇인가?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rules vs 일반 프롬프트
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-1-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 1: Rules의 이점 이해하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 1: Rules의 이점 이해하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-rules-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-1. Rules를 적용하면 얻는 5가지 이점
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      1-2. 효과적인 Rules 작성 가이드
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#act-2-ai-image-gallery-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Act 2: AI Image Gallery 프로젝트에 Rules 적용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Act 2: AI Image Gallery 프로젝트에 Rules 적용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-1. 새 Rule 생성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-2. Rule 내용 작성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      2-3. Rule 적용 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rules_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Rules 활용 팁
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rules_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Rules 사용 시 주의사항
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 요약
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 다음 단계
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="task-3-rule">Task 3: Rule</h1>
+<hr />
+<p>Amazon Q Developer의 <strong>Rules</strong> 기능은 프로젝트별 코딩 표준, 팀 규칙, 작업 가이드를 <strong>자연어 Markdown 파일로 정의</strong>하여 AI가 일관되게 따르도록 하는 지속적인 지침(Persistent Instructions) 시스템입니다. </p>
+<p>일회성 프롬프트와 달리, Rules는 <strong>모든 대화 세션에 자동으로 적용</strong>되어 코드 생성, 수정, 설명, 리뷰 등 모든 AI 상호작용에서 팀의 우선순위, 금지사항, 산출물 형식을 명확히 준수합니다. 이는 마치 팀에 새로 합류한 개발자에게 "우리 팀의 일하는 방식"을 설명하는 온보딩 문서와 같은 역할을 합니다.</p>
+<p>이 실습에서는 Rules의 핵심 개념을 이해하고, 실제 AI Image Gallery 프로젝트에 적용할 프로젝트별 규칙을 작성합니다.</p>
+<hr />
+<h2 id="_1">🎯 학습 목표</h2>
+<p>이 실습을 완료하면 다음을 수행할 수 있습니다:</p>
+<ul>
+<li>Amazon Q Developer Rules의 개념과 이점 이해하기</li>
+<li>효과적인 Rule 작성 원칙 학습하기</li>
+<li>프로젝트에 맞춤형 Rule 파일 생성 및 적용하기</li>
+<li>Rule이 Chat 및 Agent 동작에 미치는 영향 확인하기</li>
+<li>커뮤니티 Rule 템플릿을 활용하여 생산성 향상하기</li>
+</ul>
+<hr />
+<h2 id="rules">💡 Rules란 무엇인가?</h2>
+<ul>
+<li>
+<p>Rules는 <code>.amazonq/rules/</code> 디렉토리에 저장된 <strong>Markdown 파일</strong>로, Amazon Q Developer가 프로젝트 작업 시 따라야 할 지침을 정의합니다.</p>
+</li>
+<li>
+<h3 id="rules-vs">Rules vs 일반 프롬프트</h3>
+<table>
+<thead>
+<tr>
+<th>특징</th>
+<th>일반 프롬프트</th>
+<th>Rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>적용 범위</strong></td>
+<td>현재 대화 세션만</td>
+<td>모든 대화 세션에 자동 적용</td>
+</tr>
+<tr>
+<td><strong>재사용성</strong></td>
+<td>매번 반복 입력 필요</td>
+<td>한 번 정의하면 지속적으로 사용</td>
+</tr>
+<tr>
+<td><strong>일관성</strong></td>
+<td>개발자마다 다를 수 있음</td>
+<td>팀 전체에 동일하게 적용</td>
+</tr>
+<tr>
+<td><strong>유지보수</strong></td>
+<td>매번 수동 입력</td>
+<td>파일로 관리, Git으로 버전 관리</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr />
+<h2 id="act-1-rules">Act 1: Rules의 이점 이해하기</h2>
+<h3 id="1-1-rules-5">1-1. Rules를 적용하면 얻는 5가지 이점</h3>
+<p>Rules를 프로젝트에 적용하면 다음과 같은 실질적인 이점을 얻을 수 있습니다:</p>
+<ol>
+<li>
+<p><strong>일관성 (Consistency)</strong><br />
+      팀의 코딩 스타일, 디렉토리 구조, 품질 기준을 Amazon Q가 자동으로 준수합니다.</p>
+<p><strong>예시 시나리오:</strong></p>
+<pre><code> - ❌ **Rules 없이**: 개발자 A는 `camelCase`를 요청하고, 개발자 B는 `snake_case`를 요청하여 코드베이스가 혼란스러워집니다.
+ - ✅ **Rules로**: `snake_case`를 팀 표준으로 정의하면 모든 AI 생성 코드가 일관된 스타일을 유지합니다.
+</code></pre>
+</li>
+<li>
+<p><strong>안전성 (Safety)</strong><br />
+      민감한 작업 제한, 특정 명령 금지, 보안 및 컴플라이언스 가이드라인을 내재화합니다.</p>
+<p><strong>보안 예시:</strong>
+  <div class="highlight"><pre><span></span><code><span class="k">*</span><span class="w"> </span><span class="gs">**절대 금지:**</span> 프로덕션 데이터베이스에 직접 연결하는 코드를 생성하지 마세요.
+<span class="k">*</span><span class="w"> </span><span class="gs">**필수 사항:**</span> 모든 API 호출에는 인증 토큰 검증을 포함하세요.
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>생산성 (Productivity)</strong><br />
+      비기능적 요구사항(코드 스타일, 디렉토리 구조)을 고정하여 재작업과 반복 질문을 최소화합니다.</p>
+<p><strong>시간 절감:</strong></p>
+<ul>
+<li>Rules 없이: 5번의 프롬프트 수정으로 원하는 결과 도출</li>
+<li>Rules로: 1~2번의 프롬프트로 즉시 원하는 결과</li>
+</ul>
+</li>
+<li>
+<p><strong>온보딩 (Onboarding)</strong>
+      신입 개발자나 게스트가 Rules를 읽으면서 팀의 코딩 표준과 워크플로우를 빠르게 학습합니다.</p>
+<p><strong>학습 도구로서의 Rules:</strong>
+  <div class="highlight"><pre><span></span><code><span class="gu">### 우리 팀의 코드 리뷰 원칙</span>
+<span class="k">*</span><span class="w"> </span>PR은 300줄 이하로 유지합니다.
+<span class="k">*</span><span class="w"> </span>모든 새로운 기능에는 단위 테스트가 필수입니다.
+<span class="k">*</span><span class="w"> </span>주요 로직에는 간단한 주석을 추가합니다.
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Rules와 토큰 사용량</p>
+<p>Rules는 Context와 마찬가지로 <strong>Input Token에 포함</strong>됩니다. 너무 많거나 장황한 Rules는 다음과 같은 문제를 일으킬 수 있습니다:</p>
+<ul>
+<li>토큰 한도 초과로 인한 응답 품질 저하</li>
+<li>처리 시간 증가</li>
+<li>비용 증가 (API 사용량 기준)</li>
+</ul>
+<p><strong>권장 사항:</strong> Rules는 <strong>200줄 이하</strong>로 유지하고, 핵심 지침에만 집중하세요.</p>
+</div>
+</li>
+</ol>
+<hr />
+<h3 id="1-2-rules">1-2. 효과적인 Rules 작성 가이드</h3>
+<p>좋은 Rules는 명확하고, 구체적이며, 실행 가능해야 합니다. 다음 원칙을 따르세요:</p>
+<ol>
+<li>
+<p><strong>길이 제한: 200줄 이하로 유지</strong></p>
+<ul>
+<li>너무 긴 Rules는 AI가 핵심을 놓칠 수 있습니다.</li>
+<li>간결하고 우선순위가 높은 규칙에 집중하세요.</li>
+</ul>
+</li>
+<li>
+<p><strong>범위와 금지사항을 명시</strong></p>
+<ul>
+<li>✅ "모든 코드는 <code>src/</code> 디렉토리에 생성합니다."</li>
+<li>✅ "<code>config/</code> 디렉토리의 파일은 절대 수정하지 마세요."</li>
+<li>✅ "단일 파일은 200~300줄을 초과하지 않으며, 초과 시 리팩터링합니다."</li>
+</ul>
+</li>
+<li>
+<p><strong>품질 기준을 정의</strong></p>
+<ul>
+<li>스타일 가이드: "PEP8 준수", "ESLint 규칙 따르기"</li>
+<li>테스트: "모든 공개 함수에 단위 테스트 필수"</li>
+<li>로그: "에러 발생 시 상세 로그 추가"</li>
+<li>예외 처리: "try-except로 예외를 항상 처리"</li>
+</ul>
+</li>
+<li>
+<p><strong>산출물 형식을 고정</strong></p>
+<ul>
+<li>"코드와 설명을 구분하여 작성하세요."</li>
+<li>"모든 함수에는 docstring을 포함하세요."</li>
+<li>"변수명은 의미 있는 영어 단어를 사용하세요."</li>
+</ul>
+</li>
+<li>
+<p><strong>의사결정 기준을 밝히기</strong></p>
+<ul>
+<li>"단순성을 우선하세요. 복잡한 솔루션보다 간단한 솔루션을 선택합니다."</li>
+<li>"코드 중복을 피하고, 기존 구현을 재사용하세요."</li>
+<li>"새로운 라이브러리 추가 전에 기존 의존성으로 해결 가능한지 검토하세요."</li>
+</ul>
+</li>
+<li>
+<p><strong>불확실성 처리 원칙 추가</strong></p>
+<ul>
+<li>"요청이 모호하면 반드시 질문 후 진행하세요."</li>
+<li>"가정(assumption)을 만들지 말고, 확인하세요."</li>
+</ul>
+</li>
+</ol>
+<h2 id="act-2-ai-image-gallery-rules">Act 2: AI Image Gallery 프로젝트에 Rules 적용하기</h2>
+<p>이제 실제 프로젝트에 맞춤형 Rules를 생성하고 적용해보겠습니다.</p>
+<h3 id="2-1-rule">2-1. 새 Rule 생성하기</h3>
+<ol>
+<li>
+<p><strong>Rules 버튼 클릭:</strong></p>
+<ul>
+<li>Amazon Q 채팅 입력창 우측의 <strong>"Rules"</strong> 버튼을 클릭합니다.</li>
+</ul>
+<p><img alt="create_rule1" src="../images/create_rule1.png" /></p>
+</li>
+<li>
+<p><strong>"Create a new rule" 선택:</strong></p>
+<ul>
+<li>드롭다운 메뉴에서 <strong>"Create a new rule"</strong>을 클릭합니다.</li>
+</ul>
+<p><img alt="create_rule2" src="../images/create_rule2.png" /></p>
+</li>
+<li>
+<p><strong>Rule 이름 설정:</strong></p>
+<ul>
+<li>Rule name 입력창에 <code>project_rule</code>을 입력합니다.</li>
+<li><strong>"Create"</strong> 버튼을 클릭합니다.</li>
+</ul>
+<p><img alt="create_rule2" src="../images/create_rule2.png" /></p>
+</li>
+<li>
+<p><strong>Rule 파일 확인:</strong></p>
+<ul>
+<li>IDE에서 <code>.amazonq/rules/project_rule.md</code> 파일이 자동으로 열립니다.</li>
+<li>이 파일이 프로젝트의 Rules를 정의하는 Markdown 파일입니다.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">.amazonq/rules/ 디렉토리 구조</p>
+<p>Rules는 프로젝트 루트의 <code>.amazonq/rules/</code> 디렉토리에 저장됩니다:</p>
+<div class="highlight"><pre><span></span><code>project-root/
+├── .amazonq/
+│   └── rules/
+│       ├── project_rule.md
+│       ├── coding-standards.md
+│       └── security-policies.md
+└── src/
+   └── main.py
+</code></pre></div>
+<p>여러 개의 Rules 파일을 생성할 수 있으며, <strong>모든 <code>.md</code> 파일이 자동으로 적용</strong>됩니다.</p>
+</div>
+</li>
+</ol>
+<h3 id="2-2-rule">2-2. Rule 내용 작성하기</h3>
+<ul>
+<li>
+<p>열린 <code>project_rule.md</code> 파일에 다음 규칙을 작성합니다:</p>
+<div class="admonition example">
+<p class="admonition-title"><code>project_rule.md</code></p>
+<div class="highlight"><pre><span></span><code>당신은 <span class="gs">**AWS와 Python 전문가**</span>입니다.
+특히 <span class="gs">**AWS Bedrock 서비스**</span>와 <span class="gs">**Streamlit Web Framework 기반 Python 웹 애플리케이션**</span>에 특화되어 있습니다.
+모든 작업은 <span class="gs">**최신 AWS 및 Python 모범 사례**</span>를 준수하며 진행하세요.
+
+---
+
+<span class="gu">### 기본 규칙</span>
+
+<span class="k">*</span><span class="w"> </span><span class="gs">**코드 위치:**</span> 모든 코드는 <span class="sb">`src/`</span> 디렉토리에, 문서는 <span class="sb">`docs/`</span> 디렉토리에 생성합니다.
+<span class="k">*</span><span class="w"> </span><span class="gs">**패키지 관리:**</span> <span class="sb">`pip`</span> 대신 <span class="gs">**uv**</span>를 사용하여 패키지를 관리합니다.
+<span class="k">*</span><span class="w"> </span><span class="gs">**코드 품질:**</span>
+<span class="w">   </span><span class="k">*</span><span class="w"> </span>간단하고 직관적인 솔루션을 우선합니다.
+<span class="w">   </span><span class="k">*</span><span class="w"> </span>코드 중복을 피하고, 기존 코드와의 일관성을 확인합니다.
+<span class="w">   </span><span class="k">*</span><span class="w"> </span>파일은 200~300줄 이내로 유지하며, 초과 시 리팩터링합니다.
+<span class="w">   </span><span class="k">*</span><span class="w"> </span><span class="gs">**PEP8 스타일 가이드**</span>를 준수하고, 주요 로직에는 간단한 주석을 추가합니다.
+<span class="k">*</span><span class="w"> </span><span class="gs">**작업 범위:**</span> 요청된 변경 사항만 반영하며, 불확실하거나 모호한 부분은 반드시 질문 후 진행합니다.
+<span class="k">*</span><span class="w"> </span><span class="gs">**출력 형식:**</span> 코드 / 문서 / 설명은 구분해 작성하고, 필요 시 간단한 테스트 코드나 실행 예시를 포함합니다.
+<span class="k">*</span><span class="w"> </span><span class="gs">**유지보수성:**</span> 모듈화, 함수 분리, 의미 있는 네이밍으로 확장성을 고려하고 코드베이스를 깔끔하게 유지합니다.
+</code></pre></div>
+<p><img alt="create_rule3" src="../images/create_rule3.png" /></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Rule 해석하기</p>
+<p>작성한 Rule은 다음을 정의합니다:</p>
+<ul>
+<li><strong>역할</strong>: AWS와 Python 전문가, Bedrock 및 Streamlit 특화</li>
+<li><strong>디렉토리 구조</strong>: <code>src/</code>와 <code>docs/</code> 분리</li>
+<li><strong>도구 선택</strong>: <code>uv</code>를 패키지 관리자로 사용</li>
+<li><strong>코드 품질 기준</strong>: 간결함, 일관성, PEP8 준수</li>
+<li><strong>의사결정 원칙</strong>: 불확실하면 질문하기</li>
+<li><strong>산출물 형식</strong>: 코드/문서/설명 구분</li>
+</ul>
+</div>
+</li>
+</ul>
+<h3 id="2-3-rule">2-3. Rule 적용 확인하기</h3>
+<p>Rule이 정상적으로 적용되었는지 확인합니다.</p>
+<ol>
+<li>
+<p><strong>새 채팅 시작:</strong></p>
+<ul>
+<li><code>/clear</code>를 입력하거나 새 탭을 열어 깨끗한 상태로 시작합니다.</li>
+</ul>
+</li>
+<li>
+<p><strong>Active File Context 제거:</strong></p>
+<ul>
+<li>입력창 위의 Context에서 <strong>"Active file"</strong>이 있다면 ❌ 버튼을 클릭하여 제거합니다.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Active File Context를 제거하는 이유</p>
+<p>Active file이 포함되어 있으면, Amazon Q가 해당 파일의 내용에 집중하여 Rules 확인이 명확하지 않을 수 있습니다. </p>
+<p>Rules만 적용된 상태에서 테스트하기 위해 다른 Context는 제거하세요.</p>
+</div>
+<p><img alt="create_rule4" src="../images/create_rule4.png" /></p>
+</li>
+<li>
+<p><strong>Rule 확인 프롬프트 입력:</strong></p>
+<div class="highlight"><pre><span></span><code>당신이 할당받은 역할과 프로젝트 규칙을 설명하세요.
+</code></pre></div>
+</li>
+<li>
+<p><strong>Amazon Q의 응답 확인:</strong></p>
+<ul>
+<li>Amazon Q는 자동으로 <code>.amazonq/rules/project_rule.md</code> 파일을 Context로 추가합니다.</li>
+<li>입력창 위에 <strong>"project_rule.md"</strong> Context가 표시되는지 확인합니다.</li>
+<li>응답에서 작성한 Rules 내용(AWS/Python 전문가, Bedrock, Streamlit, uv 사용 등)이 언급되는지 확인합니다.</li>
+</ul>
+<p><img alt="create_rule5" src="../images/create_rule5.png" /></p>
+<div class="admonition success">
+<p class="admonition-title">Rule 적용 성공!</p>
+<p>Amazon Q가 작성한 Rules를 정확히 인지하고 있다면, 이제 모든 Chat 및 Agent 작업에서 이 규칙이 자동으로 적용됩니다!</p>
+</div>
+</li>
+</ol>
+<hr />
+<h2 id="rules_1">💡 Rules 활용 팁</h2>
+<ol>
+<li>
+<p>여러 Rules 파일로 분리하기</p>
+<p>복잡한 프로젝트에서는 Rules를 주제별로 분리하는 것이 좋습니다:</p>
+<div class="highlight"><pre><span></span><code>.amazonq/rules/
+├── coding-standards.md      # 코딩 스타일 및 품질
+├── architecture.md           # 아키텍처 패턴
+├── security.md              # 보안 정책
+└── team-conventions.md      # 팀 협업 규칙
+</code></pre></div>
+</li>
+<li>
+<p>Git으로 Rules 버전 관리</p>
+<p>Rules 파일을 Git에 커밋하여:
+  - 팀 전체가 동일한 규칙을 공유할 수 있습니다.
+  - 규칙 변경 이력을 추적할 수 있습니다.
+  - PR 리뷰를 통해 규칙 변경을 검토할 수 있습니다.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.amazonq/rules/
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add project-specific AI coding rules&quot;</span>
+git<span class="w"> </span>push
+</code></pre></div>
+</li>
+<li>
+<p>커뮤니티 Rules 활용하기</p>
+<p>처음부터 Rules를 작성하는 것이 어렵다면, 커뮤니티 템플릿을 참고하세요:</p>
+<p>AWS 공식 가이드</p>
+<ul>
+<li><a href="https://aws.amazon.com/blogs/devops/mastering-amazon-q-developer-with-rules/">Mastering Amazon Q Developer with Rules</a><ul>
+<li>AWS 권장 Rules 작성 방법</li>
+<li>실전 예시 및 베스트 프랙티스</li>
+</ul>
+</li>
+</ul>
+<p>커뮤니티 Rules 저장소</p>
+<ul>
+<li>
+<p><a href="https://github.com/PatrickJS/awesome-cursorrules">awesome-cursorrules</a></p>
+<ul>
+<li>다양한 프레임워크와 언어별 Rules 모음</li>
+<li>React, Vue, Django, FastAPI 등</li>
+</ul>
+</li>
+<li>
+<p><a href="https://cursor.directory/rules">cursor.directory</a></p>
+<ul>
+<li>커뮤니티가 공유한 검증된 Rules</li>
+<li>프로젝트 유형별로 필터링 가능</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="rules_2">⚠️ Rules 사용 시 주의사항</h2>
+<ol>
+<li>
+<p>Rules가 너무 엄격하면?</p>
+<p><strong>문제:</strong> Rules가 너무 제한적이면 AI의 창의성이 제한될 수 있습니다.</p>
+<p><strong>해결:</strong></p>
+<ul>
+<li>"가능하면" 또는 "일반적으로" 같은 유연한 표현 사용</li>
+<li>예외 상황을 명시: "특별한 이유가 있다면 예외 가능"</li>
+</ul>
+</li>
+<li>
+<p>Rules 간 충돌</p>
+<p><strong>문제:</strong> 여러 Rules 파일이 서로 모순된 지침을 제공할 수 있습니다.</p>
+<p><strong>해결:</strong></p>
+<ul>
+<li>파일명에 숫자 접두사를 사용하여 우선순위 명시: <code>1-core-rules.md</code>, <code>2-style-guide.md</code></li>
+<li>주기적으로 Rules 파일을 검토하고 일관성 확인</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="_2">✅ 요약</h2>
+<p>이 워크숍 활동에서 다음 항목을 실습했습니다:</p>
+<ul>
+<li>✅ Amazon Q Developer Rules의 개념과 일반 프롬프트와의 차이점 이해</li>
+<li>✅ Rules의 5가지 핵심 이점(일관성, 비용 절감, 안전성, 생산성, 온보딩) 학습</li>
+<li>✅ 효과적인 Rules 작성을 위한 6가지 원칙 습득</li>
+<li>✅ AI Image Gallery 프로젝트에 맞춤형 Rules 파일 생성 및 적용</li>
+<li>✅ Rules 적용 확인 및 자동 Context 추가 검증</li>
+<li>✅ 커뮤니티 Rules 템플릿 활용 방법 학습</li>
+</ul>
+<hr />
+<h2 id="_3">🚀 다음 단계</h2>
+<p>다음 실습에서는 <strong>Amazon Q Developer의 MCP (Model Context Protocol)</strong> 기능을 탐색합니다:</p>
+<ul>
+<li>MCP 서버를 통한 외부 도구 및 데이터 소스 통합</li>
+<li>표준화된 방식으로 AI 에이전트 확장하기</li>
+<li>실무 환경에서 MCP를 활용한 워크플로우 자동화</li>
+</ul>
+<p><strong>Rules로 AI의 동작을 제어하는 방법을 배웠습니다. 이제 MCP를 통해 AI의 능력을 확장하는 방법을 배워봅시다!</strong> 🎉</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../22-agent/" class="md-footer__link md-footer__link--prev" aria-label="이전: Task 2: Agent">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                Task 2: Agent
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../24-mcp/" class="md-footer__link md-footer__link--next" aria-label="다음: Task 4: MCP">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                Task 4: MCP
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "content.code.annotations", "content.code.copy", "content.code.line_numbers", "content.action.edit", "content.action.view", "navigation.footer"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
